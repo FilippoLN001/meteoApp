@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card-content>
+    <div *ngIf="weatherData">
+      <h2>Weather in {{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
+      <p>Temperature: {{ weatherData.current.temp_c }}°C</p>
+      <p>Condition: {{ weatherData.current.condition.text }}</p>
+      <p>Humidity: {{ weatherData.current.humidity }}%</p>
+      <p>Wind: {{ weatherData.current.wind_kph }} kph</p>
+      <img [src]="'https:' + weatherData.current.condition.icon" alt="Weather Icon">
+    </div>
+  </ion-card-content>
+</ion-content>
+
+
