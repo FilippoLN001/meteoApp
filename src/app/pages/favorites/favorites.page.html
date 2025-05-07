@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Favorites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card-content>
+    <div *ngIf="weatherData.length > 0">
+      <div *ngFor="let data of weatherData" class="weather-card" [ngClass]="getBackgroundClass(data.current.condition.text)">
+        <h2>Weather in {{ data.location.name }}, {{ data.location.region }}</h2>
+        <p class="temperature">Temperature: {{ data.current.temp_c }}°C</p>
+        <p class="condition">Condition: {{ data.current.condition.text }}</p>
+        <p class="humidity">Humidity: {{ data.current.humidity }}%</p>
+        <p class="wind">Wind: {{ data.current.wind_kph }} kph</p>
+        <img [src]="'https:' + data.current.condition.icon" alt="Weather Icon">
+        <ion-icon name="star-outline" (click)="addToHome()"></ion-icon>
+      </div>
+    </div>
+    <div *ngIf="weatherData.length === 0">
+      <p>No favorite locations saved.</p>
+    </div>
+  </ion-card-content>
+</ion-content>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { Preferences } from '@capacitor/preferences';
-import { ToastController } from '@ionic/angular';
 import { MeteoService } from 'src/app/services/meteo.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -29,9 +29,10 @@ export class HomePage implements OnInit {
   }
 
   async getPosition(): Promise<void> {
-    (await this.meteoService.getWheaterLocation(this.coordinate.latitude, this.coordinate.longitude)).subscribe(data => {
-      this.weatherData = data;
-    },
+    this.meteoService.getWheaterLocation(this.coordinate.latitude, this.coordinate.longitude).subscribe(
+      data => {
+        this.weatherData = data;
+      },
       async error => {
         const toast = await this.toastController.create({
           message: error,
@@ -43,11 +44,28 @@ export class HomePage implements OnInit {
     );
   }
 
-async getFavorites(): Promise<void> {
-  const favorite = await Preferences.get({ key: 'location' });
-  console.log('Raw favorite data:', favorite);
-  this.locations = favorite.value ? [JSON.parse(favorite.value)] : [];
-  console.log('Parsed favorite locations:', this.locations);
-}
+  async getFavorites(): Promise<void> {
+    const favorite = await Preferences.get({ key: 'favorite' });
+    console.log('Raw favorite data:', favorite);
+    this.locations = favorite.value ? JSON.parse(favorite.value) : [];
+    console.log('Parsed favorite locations:', this.locations);
+  }
+
+  getBackgroundClass(condition: string): string {
+    switch (condition.toLowerCase()) {
+      case 'sunny':
+        return 'sunny-bg';
+      case 'rainy':
+        return 'rainy-bg';
+      case 'overcast':
+        return 'cloudy-bg';
+      case 'snow':
+        return 'snow-bg';
+      case 'partial cloudy':
+        return 'partial-cloudy-bg';
+      default:
+        return 'default-bg';
+    }
+  }
 
 }

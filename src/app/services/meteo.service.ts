@@ -32,4 +32,14 @@ export class MeteoService {
       return throwError('An error occurred');
     }
   }
+
+  // getIconPathService(condition: string): string {
+  //   const conditionMap: { [key: string]: string } = {
+  //     sunny: 'sunny.svg',
+  //     rainy: 'rainy.svg',
+  //     snow: 'snow.svg',
+  //     overcast: 'overcast.svg',
+  //   };
+  //   return `../../../assets/icon/${conditionMap[condition.toLowerCase()] || 'default.svg'}`;
+  // }
 }

@@ -2,12 +2,13 @@
   <ion-toolbar>
     <ion-title>Home</ion-title>
     <ion-icon name="add-outline" slot="end" routerLink="/search"></ion-icon>
+    <ion-button routerLink="/favorites">Favorites</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card-content>
-    <div *ngIf="weatherData" class="weather-card">
+    <div *ngIf="weatherData" [ngClass]="getBackgroundClass(weatherData.current.condition.text)" class="weather-card">
       <h2>Weather in {{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
       <p class="temperature">Temperature: {{ weatherData.current.temp_c }}°C</p>
       <p class="condition">Condition: {{ weatherData.current.condition.text }}</p>
@@ -16,8 +17,7 @@
       <img [src]="'https:' + weatherData.current.condition.icon" alt="Weather Icon">
     </div>
     <div *ngIf="locations && locations.length > 0">
-      
-      <div *ngFor="let location of locations" class="weather-card">
+      <div *ngFor="let location of locations" [ngClass]="getBackgroundClass(location.current.condition.text)" class="weather-card">
         <h2>Weather in {{ location.location.name }}, {{ location.location.region }}</h2>
         <p class="temperature">Temperature: {{ location.current.temp_c }}°C</p>
         <p class="condition">Condition: {{ location.current.condition.text }}</p>
