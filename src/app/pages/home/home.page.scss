@@ -1,0 +1,53 @@
+
+ion-icon{
+  font-size: 30px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+ion-icon:hover{
+  color: yellow;
+}
+
+.weather-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #01c0d5c6, #57c464); /* Gradient background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.weather-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.weather-card p {
+  margin: 4px 0;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.weather-card .temperature {
+  color: #e74c3c; /* Red color for temperature */
+}
+
+.weather-card .condition {
+  color: #ffffff; /* Blue color for condition */
+}
+
+.weather-card .humidity {
+  color: #2ecc71; /* Green color for humidity */
+}
+
+.weather-card .wind {
+  color: #f39c12; /* Orange color for wind */
+}
+
+.weather-card img {
+  display: block;
+  margin: 16px auto;
+  max-width: 100px;
+}

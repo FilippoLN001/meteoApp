@@ -1,0 +1,59 @@
+.location_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.city {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.city-box, .favorite-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #00796b;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-in-out;
+  margin-bottom: 20px;
+}
+
+.city-box h2, .favorite-box h4 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.city-box p, .favorite-box p {
+  color: #fff;
+  margin: 5px 0;
+}
+
+.city-box img, .favorite-box img {
+  width: 64px;
+  height: 64px;
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

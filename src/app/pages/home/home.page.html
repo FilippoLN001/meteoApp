@@ -1,20 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>Home</ion-title>
+    <ion-icon name="add-outline" slot="end" routerLink="/search"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card-content>
-    <div *ngIf="weatherData">
+    <div *ngIf="weatherData" class="weather-card">
       <h2>Weather in {{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
-      <p>Temperature: {{ weatherData.current.temp_c }}°C</p>
-      <p>Condition: {{ weatherData.current.condition.text }}</p>
-      <p>Humidity: {{ weatherData.current.humidity }}%</p>
-      <p>Wind: {{ weatherData.current.wind_kph }} kph</p>
+      <p class="temperature">Temperature: {{ weatherData.current.temp_c }}°C</p>
+      <p class="condition">Condition: {{ weatherData.current.condition.text }}</p>
+      <p class="humidity">Humidity: {{ weatherData.current.humidity }}%</p>
+      <p class="wind">Wind: {{ weatherData.current.wind_kph }} kph</p>
       <img [src]="'https:' + weatherData.current.condition.icon" alt="Weather Icon">
+    </div>
+    <div *ngIf="locations && locations.length > 0">
+      
+      <div *ngFor="let location of locations" class="weather-card">
+        <h2>Weather in {{ location.location.name }}, {{ location.location.region }}</h2>
+        <p class="temperature">Temperature: {{ location.current.temp_c }}°C</p>
+        <p class="condition">Condition: {{ location.current.condition.text }}</p>
+        <p class="humidity">Humidity: {{ location.current.humidity }}%</p>
+        <p class="wind">Wind: {{ location.current.wind_kph }} kph</p>
+        <img [src]="'https:' + location.current.condition.icon" alt="Weather Icon">
+      </div>
     </div>
   </ion-card-content>
 </ion-content>
-
-
