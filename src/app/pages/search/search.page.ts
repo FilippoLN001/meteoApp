@@ -9,56 +9,75 @@ import { MeteoService } from 'src/app/services/meteo.service';
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
 })
-
-
 export class SearchPage implements OnInit {
 
   location = {
     position: '',
   }
   weatherData: any;
-  favoriteWeather : any[] = [];
-
+  favoriteWeather: any[] = [];
 
   constructor(private meteoService: MeteoService, private toastController: ToastController) { }
 
   ngOnInit() {
   }
 
-  async submitForm(){
-    if(this.isFormComplete()){
-        await this.getLocation();
+  async submitForm() {
+    if (this.isFormComplete()) {
+      await this.getLocation();
     }
   }
 
-  isFormComplete() : boolean {
-    return !! (this.location.position);
+  isFormComplete(): boolean {
+    return !!(this.location.position);
   }
 
-   async getLocation(): Promise<void>{
-     (await this.meteoService.getLocationPosition(this.location.position)).subscribe(data => {
-       this.weatherData = data;
-       },
-       async error =>{
-        const toast = await this.toastController.create({
-          message: error,
-          duration: 3000,
-          position: 'bottom'
-        });
-        await toast.present();
-       }
-      );
-     }
+  async getLocation(): Promise<void> {
+    (await this.meteoService.getLocationPosition(this.location.position)).subscribe(data => {
+      this.weatherData = data;
+    },
+    async error => {
+      const toast = await this.toastController.create({
+        message: error,
+        duration: 3000,
+        position: 'bottom'
+      });
+      await toast.present();
+    });
+  }
 
-     async addFavorite() {
-      if (this.weatherData) {
-        await Preferences.set({
-          key: 'location',
-          value: JSON.stringify(this.weatherData) // Ensure the data is stored as a string
-        });
-        console.log('Favorite location saved successfully');
-      } else {
-        console.log('No weather data available to save');
+  async addFavorite() {
+    if (this.weatherData) {
+      // Retrieve existing favorites
+      const existingFavorites = await Preferences.get({ key: 'location' });
+      let favorites = [];
+
+      // Check if existingFavorites.value is a valid JSON string
+      if (existingFavorites.value) {
+        try {
+          favorites = JSON.parse(existingFavorites.value);
+          // Ensure favorites is an array
+          if (!Array.isArray(favorites)) {
+            favorites = [];
+          }
+        } catch (error) {
+          console.error('Error parsing favorites:', error);
+          favorites = [];
+        }
       }
+
+      // Add new favorite to the list
+      favorites.push(this.weatherData);
+
+      // Save updated list back to Preferences
+      await Preferences.set({
+        key: 'location',
+        value: JSON.stringify(favorites)
+      });
+      console.log('Favorite location saved successfully');
+    } else {
+      console.log('No weather data available to save');
     }
+  }
+
 }

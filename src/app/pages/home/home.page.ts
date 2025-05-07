@@ -61,7 +61,7 @@ export class HomePage implements OnInit {
         return 'cloudy-bg';
       case 'snow':
         return 'snow-bg';
-      case 'partial cloudy':
+      case 'partly cloudy':
         return 'partial-cloudy-bg';
       default:
         return 'default-bg';

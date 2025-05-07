@@ -13,10 +13,11 @@ export class FavoritesPage implements OnInit {
   constructor() { }
 
   async ngOnInit() {
-    const favorite = await Preferences.get({ key: 'location' });
-    console.log('Raw favorite data:', favorite);
-    this.weatherData = favorite.value ? [JSON.parse(favorite.value)] : [];
-    console.log('Parsed favorite locations:', this.weatherData);
+    await this.loadWeather();
+  }
+
+  ionViewWillEnter() { //ion lifecycle
+    this.loadWeather();
   }
 
   getBackgroundClass(condition: string): string {
@@ -36,7 +37,6 @@ export class FavoritesPage implements OnInit {
     }
   }
 
-
   async addToHome() {
     if (this.weatherData.length > 0) {
       await Preferences.set({
@@ -47,5 +47,12 @@ export class FavoritesPage implements OnInit {
     } else {
       console.log('No weather data available to save');
     }
+  }
+
+  async loadWeather(){
+    const favorite = await Preferences.get({ key: 'location' });
+    console.log('Raw favorite data:', favorite);
+    this.weatherData = favorite.value ? JSON.parse(favorite.value) : [];
+    console.log('Parsed favorite locations:', this.weatherData);
   }
 }

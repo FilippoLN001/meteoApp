@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true">
   <ion-card-content>
     <div *ngIf="weatherData.length > 0">
-      <div *ngFor="let data of weatherData" class="weather-card" [ngClass]="getBackgroundClass(data.current.condition.text)">
+      <div *ngFor="let data of weatherData" class="weather-card">
         <h2>Weather in {{ data.location.name }}, {{ data.location.region }}</h2>
         <p class="temperature">Temperature: {{ data.current.temp_c }}°C</p>
         <p class="condition">Condition: {{ data.current.condition.text }}</p>
