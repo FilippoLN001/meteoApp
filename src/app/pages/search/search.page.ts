@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { MeteoService } from 'src/app/services/meteo.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class SearchPage implements OnInit {
   weatherData: any;
   favoriteWeather: any[] = [];
 
-  constructor(private meteoService: MeteoService, private toastController: ToastController) { }
+  constructor(private meteoService: MeteoService, private toastController: ToastController, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
   }
@@ -33,8 +33,14 @@ export class SearchPage implements OnInit {
   }
 
   async getLocation(): Promise<void> {
-    (await this.meteoService.getLocationPosition(this.location.position)).subscribe(data => {
+  const loading = await this.loadingCtrl.create({
+      message: 'Loading favorites...',
+      spinner: 'dots',
+     });
+     await loading.present();
+    (await this.meteoService.getLocationPosition(this.location.position)).subscribe(async data => {
       this.weatherData = data;
+      await loading.dismiss();
     },
     async error => {
       const toast = await this.toastController.create({

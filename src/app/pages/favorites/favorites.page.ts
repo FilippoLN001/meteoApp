@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-favorites',
@@ -10,7 +11,7 @@ import { Preferences } from '@capacitor/preferences';
 export class FavoritesPage implements OnInit {
   weatherData: any[] = [];
 
-  constructor() { }
+  constructor(private loadingCtrl: LoadingController) { }
 
   async ngOnInit() {
     await this.loadWeather();
@@ -18,23 +19,6 @@ export class FavoritesPage implements OnInit {
 
   ionViewWillEnter() { //ion lifecycle
     this.loadWeather();
-  }
-
-  getBackgroundClass(condition: string): string {
-    switch (condition.toLowerCase()) {
-      case 'sunny':
-        return 'sunny-bg';
-      case 'rainy':
-        return 'rainy-bg';
-      case 'overcast':
-        return 'cloudy-bg';
-      case 'snow':
-        return 'snow-bg';
-      case 'partly cloudy':
-        return 'partial-cloudy-bg';
-      default:
-        return 'default-bg';
-    }
   }
 
   async addToHome() {
@@ -50,9 +34,16 @@ export class FavoritesPage implements OnInit {
   }
 
   async loadWeather(){
+
+const loading = await this.loadingCtrl.create({
+      message: 'Loading favorites...',
+      spinner: 'dots',
+    });
+    await loading.present();
     const favorite = await Preferences.get({ key: 'location' });
     console.log('Raw favorite data:', favorite);
     this.weatherData = favorite.value ? JSON.parse(favorite.value) : [];
     console.log('Parsed favorite locations:', this.weatherData);
+    await loading.dismiss();
   }
 }

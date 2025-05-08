@@ -9,37 +9,13 @@ ion-icon:hover{
   color: yellow;
 }
 
-.sunny-bg {
-  background: linear-gradient(135deg, #f9d71c, #f39c12); /* Gradient yellow for sunny */
-}
-
-.rainy-bg {
-  background: linear-gradient(135deg, #76c7c0, #3498db); /* Gradient blue for rainy */
-}
-
-.cloudy-bg {
-  background: linear-gradient(135deg, #b0bec5, #78909c); /* Gradient gray for cloudy */
-}
-
-.snow-bg {
-  background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Gradient light blue for snow */
-}
-
-.partial-cloudy-bg {
-  background: linear-gradient(135deg, #d3d3d3, #a9a9a9); /* Gradient light gray for partial cloudy */
-}
-
-.default-bg {
-  background: linear-gradient(135deg, #34b601, #a8e063); /* Gradient green for default */
-}
-
-
 .weather-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #b0bec5, #78909c); /* Gradient gray for cloudy */
 }
 
 .weather-card h2 {
@@ -58,4 +34,18 @@ ion-icon:hover{
   display: block;
   margin: 16px auto;
   max-width: 100px;
+}
+
+.favorites h2{
+  padding: 3px;
+  margin-bottom: 10px 0;
+  font-size: medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.current h2{
+  padding: 3px;
+  margin-bottom: 20px 0;
+  font-size: medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

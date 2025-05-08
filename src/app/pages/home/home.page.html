@@ -8,6 +8,9 @@
 
 <ion-content [fullscreen]="true">
   <ion-card-content>
+    <div class="current">
+      <h2>CURRENT POSITION</h2>
+    </div>
     <div *ngIf="weatherData" class="weather-card">
       <h2>Weather in {{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
       <p class="temperature">Temperature: {{ weatherData.current.temp_c }}°C</p>
@@ -15,6 +18,9 @@
       <p class="humidity">Humidity: {{ weatherData.current.humidity }}%</p>
       <p class="wind">Wind: {{ weatherData.current.wind_kph }} kph</p>
       <img [src]="'https:' + weatherData.current.condition.icon" alt="Weather Icon">
+    </div>
+    <div class="favorites">
+      <h2>FAVORITES</h2>
     </div>
     <div *ngIf="locations && locations.length > 0">
       <div *ngFor="let location of locations" class="weather-card">

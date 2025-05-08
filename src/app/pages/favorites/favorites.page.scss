@@ -9,29 +9,6 @@ ion-icon:hover{
   color: yellow;
 }
 
-.sunny-bg {
-  background: linear-gradient(135deg, #f9d71c, #f39c12); /* Gradient yellow for sunny */
-}
-
-.rainy-bg {
-  background: linear-gradient(135deg, #76c7c0, #3498db); /* Gradient blue for rainy */
-}
-
-.cloudy-bg {
-  background: linear-gradient(135deg, #b0bec5, #78909c); /* Gradient gray for cloudy */
-}
-
-.snow-bg {
-  background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Gradient light blue for snow */
-}
-
-.partial-cloudy-bg {
-  background: linear-gradient(135deg, #d3d3d3, #a9a9a9); /* Gradient light gray for partial cloudy */
-}
-
-.default-bg {
-  background: linear-gradient(135deg, #34b601, #a8e063); /* Gradient green for default */
-}
 
 
 .weather-card {
@@ -40,6 +17,7 @@ ion-icon:hover{
   padding: 16px;
   margin-bottom: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #b0bec5, #78909c);
 }
 
 .weather-card h2 {
