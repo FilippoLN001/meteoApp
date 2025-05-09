@@ -49,6 +49,7 @@ export class SearchPage implements OnInit {
         position: 'bottom'
       });
       await toast.present();
+      await loading.dismiss();
     });
   }
 

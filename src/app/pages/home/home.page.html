@@ -2,7 +2,6 @@
   <ion-toolbar>
     <ion-title>Home</ion-title>
     <ion-icon name="add-outline" slot="end" routerLink="/search"></ion-icon>
-    <ion-button routerLink="/favorites">Favorites</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -20,6 +19,7 @@
       <img [src]="'https:' + weatherData.current.condition.icon" alt="Weather Icon">
     </div>
     <div class="favorites">
+      <ion-button routerLink="/favorites">Favorites</ion-button>
       <h2>FAVORITES</h2>
     </div>
     <div *ngIf="locations && locations.length > 0">
