@@ -53,3 +53,36 @@ ion-icon:hover{
   font-size: medium;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.favorites-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-button {
+  margin-left: auto;
+  margin-bottom: 10px;
+}
+
+.hourly-forecast {
+  margin-top: 16px;
+  overflow-x: auto;
+  white-space: nowrap; /* Important for horizontal layout */
+  padding-bottom: 8px;
+}
+
+.hourly-weather {
+  display: inline-block; /* Key change */
+  vertical-align: top;
+  min-width: 80px;
+  text-align: center;
+  background: linear-gradient(135deg, #4f5254, #05354d);
+  border-radius: 8px;
+  padding: 8px;
+  margin-right: 8px; /* Space between items */
+}
+
+.hourly-weather p{
+  color: #ccc;
+}
